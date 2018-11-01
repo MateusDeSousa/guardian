@@ -29,7 +29,7 @@ $user = new User($db);*/
 $servidor = "localhost";
 $usuario = "root";
 $senha = "";
-$dbname = "teste";
+$dbname = "guardian";
 
 //Criar conexão
 $conex = mysqli_connect($servidor, $usuario, $senha, $dbname);

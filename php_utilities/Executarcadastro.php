@@ -16,10 +16,15 @@ $resultado_usuario = mysqli_query($conex, $newUser);
 
 if (mysqli_insert_id($conex)) {
     $_SESSION['msg'] = "<p style='color: green'>Seu cadastro foi realizado com sucesso</p>";
-    header("Location: ../views/index.php");
+    echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../views/index.html'>";
+    echo '<h3>Cadastro efetuado com sucesso!!</h3><br>';
+    echo '<p>Redirecionando para página principal...</p>';
 } else {
     $_SESSION['msg'] = "<p style='color: red'>ops!! cadstro não realizado</p>";
-    header("Location: ../views/index.php");    
+    echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../index.php'>";
+    echo '<h3>Ocorreu um erro no cadastro :(</h3><br>';
+    echo '<p>Tente novamente...</p>';
+    echo '<p>Redirecionando...</p>';
 }
 
 ?>
