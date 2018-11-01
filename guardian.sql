@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 30/10/2018 às 19:25
+-- Host: 127.0.0.1
+-- Generation Time: 01-Nov-2018 às 18:35
 -- Versão do servidor: 10.1.36-MariaDB
--- Versão do PHP: 7.2.11
+-- versão do PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,108 +19,110 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `guardian`
+-- Database: `guardian`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_cliente`
+-- Estrutura da tabela `tb_cliente`
 --
 
 CREATE TABLE `tb_cliente` (
   `id` int(11) NOT NULL,
-  `nome` varchar(30) COLLATE utf8_bin NOT NULL,
-  `sobrenome` varchar(60) COLLATE utf8_bin NOT NULL,
+  `name` varchar(30) COLLATE utf8_bin NOT NULL,
+  `lastname` varchar(60) COLLATE utf8_bin NOT NULL,
+  `username` varchar(30) COLLATE utf8_bin NOT NULL,
   `cnh` int(11) NOT NULL,
-  `carro_alugado` tinyint(1) NOT NULL
+  `email` varchar(100) COLLATE utf8_bin NOT NULL,
+  `password` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_funcionario`
+-- Estrutura da tabela `tb_funcionario`
 --
 
 CREATE TABLE `tb_funcionario` (
   `id` int(11) NOT NULL,
-  `login` varchar(30) COLLATE utf8_bin NOT NULL,
-  `senha` varchar(100) COLLATE utf8_bin NOT NULL
+  `user` varchar(30) COLLATE utf8_bin NOT NULL,
+  `password` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_locacao`
+-- Estrutura da tabela `tb_locacao`
 --
 
 CREATE TABLE `tb_locacao` (
   `id` int(11) NOT NULL,
-  `id_carro` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  `valor` int(11) NOT NULL,
+  `car_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `value` int(11) NOT NULL,
   `status` varchar(20) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_veiculo`
+-- Estrutura da tabela `tb_veiculo`
 --
 
 CREATE TABLE `tb_veiculo` (
   `id` int(11) NOT NULL,
-  `marca` varchar(30) COLLATE utf8_bin NOT NULL,
-  `modelo` varchar(30) COLLATE utf8_bin NOT NULL,
-  `ano` int(11) NOT NULL,
-  `qte_lugar` int(11) NOT NULL,
-  `ar_cond` varchar(3) COLLATE utf8_bin NOT NULL,
+  `car_brand` varchar(30) COLLATE utf8_bin NOT NULL,
+  `car_model` varchar(30) COLLATE utf8_bin NOT NULL,
+  `year` int(11) NOT NULL,
+  `seats_qtd` int(11) NOT NULL,
+  `air_cond` varchar(3) COLLATE utf8_bin NOT NULL,
   `abs` varchar(3) COLLATE utf8_bin NOT NULL,
-  `som` varchar(3) COLLATE utf8_bin NOT NULL,
-  `qte_porta` int(11) NOT NULL,
+  `sound` varchar(3) COLLATE utf8_bin NOT NULL,
+  `door_qtd` int(11) NOT NULL,
   `status` varchar(30) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Índices de tabelas apagadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `tb_cliente`
+-- Indexes for table `tb_cliente`
 --
 ALTER TABLE `tb_cliente`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `tb_funcionario`
+-- Indexes for table `tb_funcionario`
 --
 ALTER TABLE `tb_funcionario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `tb_locacao`
+-- Indexes for table `tb_locacao`
 --
 ALTER TABLE `tb_locacao`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `tb_cliente`
+-- AUTO_INCREMENT for table `tb_cliente`
 --
 ALTER TABLE `tb_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de tabela `tb_funcionario`
+-- AUTO_INCREMENT for table `tb_funcionario`
 --
 ALTER TABLE `tb_funcionario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `tb_locacao`
+-- AUTO_INCREMENT for table `tb_locacao`
 --
 ALTER TABLE `tb_locacao`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
