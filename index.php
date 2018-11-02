@@ -25,9 +25,9 @@
             <button>Cadastrar</button>
             <p class="message">Já é cadastrado? <a href="#">Fazer Login</a></p>
           </form>
-          <form class="login-form">
-            <input type="text" placeholder="Nome de Usuário"/>
-            <input type="password" placeholder="Senha"/>
+          <form class="login-form" method="POST" action="php_utilities/login.php">
+            <input type="text" name="username" placeholder="Nome de Usuário"/>
+            <input type="password" name="password" placeholder="Senha"/>
             <button>Login</button>
             <p class="message">Não é cadastrado? <a href="#">Criar uma Conta</a></p>
           </form>
