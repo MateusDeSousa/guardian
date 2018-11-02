@@ -1,0 +1,64 @@
+#logo {
+	width: 20rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.navbar {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.btn-login {
+	float: right;
+	margin-top: 1.5rem;
+}
+
+.btn-cadastro {
+	background-color: red;
+	color: white;
+	float: right;
+	margin-top: 1.5rem;
+	margin-right: 1rem;
+}
+
+.card {
+	margin-top: 3rem;
+	background-color: #ededed;
+	display: flex;
+	flex-direction: row;
+}
+
+.card-img img {
+	width: 40rem;
+	margin-left: 2rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.card-text {
+	margin-left: 3rem;
+}
+
+.botoes {
+	display: inline;
+	margin-left: 52rem; /* SE TIRAR O COMENTÁRIO DO BOTÃO DE CANCELAR, MODIFICAR PARA 45REM */
+}
+
+.form-data {
+	width: 50%;
+	height: 50vh;
+	margin: 0 auto;
+	margin-top: 5vh;
+	background: #ededed;
+	padding-left: 5rem;
+	padding-top: 5rem;
+}
+
+.btn-form-data {
+	margin-left: 40rem;
+	margin-top: 0rem;
+}
+
+#termos {
+	margin-top: 10rem;
+}
