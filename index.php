@@ -15,7 +15,7 @@
 <body>
     <div class="login-page">
         <div class="form">
-          <form class="register-form" method="POST" action="php_utilities/Executarcadastro.php">
+          <form class="register-form" method="POST" action="php_utilities/cadastrarcliente.php">
             <input type="text" placeholder="Nome" name="name"/>
             <input type="text" placeholder="Sobrenome" name="lastname"/>
             <input type="text" placeholder="Nome de Usuário" name="username"/>
