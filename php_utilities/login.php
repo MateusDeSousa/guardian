@@ -1,27 +1,14 @@
 <?php
 include_once '../config/config.php';
+include_once 'funcaocliente.php';
+$conn = new conectar();
+
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 $passwordMD5 = md5($password); // md5 do password pra comparar no banco
 
-$sql = "SELECT username, password FROM tb_cliente WHERE username = '{$username}' AND password = '{$passwordMD5}' ";
-$query = mysqli_query($conex, $sql);
-
-// array de informação do banco
-$info = mysqli_fetch_assoc($query);
-
-// se o array tiver vazio (banco não achou registro), redireciona pra login novamente
-if(empty($info)) {
-  echo 'Login sem sucesso, verifique os campos e tente novamente.';
-  echo '<meta HTTP-EQUIV="Refresh" CONTENT="3;URL=../index.php">';
-} else {
-  header('location:../views/index.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
-}
-
-
-
-
+$executar = $conn->login($username, $passwordMD5);
 
 
 /*
