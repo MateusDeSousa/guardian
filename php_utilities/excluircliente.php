@@ -1,10 +1,11 @@
 <?php
     session_start();
     include_once '../config/config.php';
+    include_once 'funcaocliente.php';
+    $conn = new conectar();
 
-    $userName = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
+    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 
-    $query = "DELETE FROM tb_cliente WHERE username = {$username}";
-    $resposta = mysqli_query($conex, $query);;
-    header('Location: ../views/index.html');
+    $executar = $conn->excluir($username);
+    
 ?>
