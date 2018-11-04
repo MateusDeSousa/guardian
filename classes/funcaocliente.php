@@ -1,4 +1,5 @@
 <?php
+    session_start();
 
 include_once '../../config/config.php';
 
@@ -26,8 +27,8 @@ class conectar extends config{
 
         // se o array tiver vazio (banco não achou registro), redireciona pra login novamente
         if(empty($info)) {
-            echo 'Login sem sucesso, verifique os campos e tente novamente.';
-            echo '<meta HTTP-EQUIV="Refresh" CONTENT="3;URL=../../index.php">';
+            header('location:../../index.php'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index            
+            $_SESSION['msn'] = '<p style="color: red">Login não efetuado</p><br>';
         } else {
             header('location:../../views/index.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
         }
@@ -85,6 +86,7 @@ class conectar extends config{
         }
         
     }
+
 
 
     function gerarchave($email){

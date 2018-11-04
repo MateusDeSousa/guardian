@@ -27,6 +27,12 @@
             <p class="message">Já é cadastrado? <a href="#">Fazer Login</a></p>
           </form>
           <form class="login-form" method="POST" action="php_utilities/cliente/login.php">
+            <?php
+              if(isset($_SESSION['msn'])){
+                echo $_SESSION['msn'];
+                unset($_SESSION['msn']);  
+              }
+            ?>
             <input type="text" name="username" placeholder="Nome de Usuário"/>
             <input type="password" name="password" placeholder="Senha"/>
             <button>Login</button>
