@@ -16,8 +16,14 @@ class conectar extends config{
             }
     }
 
+    
+
+
+
+
+
     function login($username, $password){
-        $sql = $this->conn->prepare("SELECT username, password FROM tb_cliente WHERE username = :username AND password = :password ");
+        $sql = $this->conn->prepare("SELECT username, password FROM tb_funcionario WHERE username = :username AND password = :password ");
         $sql->bindValue(":username", $username);
         $sql->bindValue(":password", $password);
 
@@ -30,13 +36,13 @@ class conectar extends config{
             header('location:../../index.php'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index            
             $_SESSION['msn'] = '<p style="color: red">Login não efetuado</p><br>';
         } else {
-            header('location:../../views/index.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
+            header('location:../../views/login_sucesso.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
         }
     }
 
 
-    function cadastrar($userName, $password){
-        $newUser = $this->conn->prepare("INSERT INTO tb_funcionario(username, password) VALUES ('$userName', '$password')");
+    function cadastrar($userName, $emailAddress, $password){
+        $newUser = $this->conn->prepare("INSERT INTO tb_funcionario(username, email, password) VALUES ('$userName', '$emailAddress', '$password')");
         $run = $newUser->execute();
 
         if ($run) {
@@ -61,7 +67,7 @@ class conectar extends config{
 
         if($run){
             echo '<meta HTTP-EQUIV="Refresh" CONTENT="3;URL=../../index.php">';            
-            echo '<h3>Usuario deletado com sucesso!!</h3><br>';
+            echo '<h3>funcioario deletado com sucesso!!</h3><br>';
             echo '<p>Redirecionando para página principal...</p>';
         } else{
             echo '<h3>Ocorreu um erro ao deletar usuario :(</h3><br>';
@@ -71,8 +77,8 @@ class conectar extends config{
     }
 
 
-    function editar($username, $password){
-        $update = $this->conn->prepare("UPDATE `tb_funcionario` SET '{$password}' WHERE `tb_cliente`.`username` = '{$username}'");
+    function editar($username, $email, $password){
+        $update = $this->conn->prepare("UPDATE `tb_funcionario` SET `email`='{$email}', `password`= '{$password}' WHERE `tb_cliente`.`username` = '{$username}'");
         $run = $update->execute();
 
         if($run){
@@ -89,9 +95,9 @@ class conectar extends config{
 
 
 
-    function gerarchave($username){
-        $query = $this->conn->prepare("SELECT * FROM tb_funcionario WHERE username = :username");        
-        $query->bindValue(":username", $username);
+    function gerarchave($email){
+        $query = $this->conn->prepare("SELECT * FROM tb_funcionario WHERE email = :email");        
+        $query->bindValue(":email", $email);
         $run = $query->execute();
 
         $info = $query->fetch(PDO::FETCH_ASSOC);
@@ -107,8 +113,8 @@ class conectar extends config{
 
 
     function validarchave($email, $chave){
-        $query = $this->conn->prepare("SELECT * FROM tb_funcionario WHERE username = :username");        
-        $query->bindValue(":username", $username);
+        $query = $this->conn->prepare("SELECT * FROM tb_funcionario WHERE email = :email");        
+        $query->bindValue(":email", $email);
         $run = $query->execute();
 
         $info = $query->fetch(PDO::FETCH_ASSOC);
@@ -136,6 +142,5 @@ class conectar extends config{
             echo '<p>Redirecionando...</p>';
         }
     }
-
 }
 ?>
