@@ -2,6 +2,9 @@
 
 body {
   background: url(../img/Guardian_login.jpg);
+  background-position: center;
+  background-attachment: fixed;
+  background-size: contain;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
