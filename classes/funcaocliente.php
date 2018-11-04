@@ -134,6 +134,5 @@ class conectar extends config{
             echo '<p>Redirecionando...</p>';
         }
     }
-
 }
 ?>
