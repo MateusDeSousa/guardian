@@ -1,6 +1,6 @@
 <?php
 
-include_once '../config/config.php';
+include_once '../../config/config.php';
 
 class conectar extends config{
     var $conn;
@@ -27,9 +27,9 @@ class conectar extends config{
         // se o array tiver vazio (banco não achou registro), redireciona pra login novamente
         if(empty($info)) {
             echo 'Login sem sucesso, verifique os campos e tente novamente.';
-            echo '<meta HTTP-EQUIV="Refresh" CONTENT="3;URL=../index.php">';
+            echo '<meta HTTP-EQUIV="Refresh" CONTENT="3;URL=../../index.php">';
         } else {
-            header('location:../views/index.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
+            header('location:../../views/index.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
         }
     }
 
@@ -40,7 +40,7 @@ class conectar extends config{
 
         if ($run) {
             $_SESSION['msg'] = "<p style='color: green'>Seu cadastro foi realizado com sucesso</p>";
-            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../views/index.html'>";
+            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../views/index.html'>";
             echo '<h3>Cadastro efetuado com sucesso!!</h3><br>';
             echo '<p>Redirecionando para página principal...</p>';
         } else {
@@ -59,6 +59,7 @@ class conectar extends config{
         $run = $delete->execute();
 
         if($run){
+            echo '<meta HTTP-EQUIV="Refresh" CONTENT="3;URL=../../index.php">';            
             echo '<h3>Usuario deletado com sucesso!!</h3><br>';
             echo '<p>Redirecionando para página principal...</p>';
         } else{
@@ -71,11 +72,10 @@ class conectar extends config{
 
     function editar($name, $lastname, $username, $cnh, $email, $password){
         $update = $this->conn->prepare("UPDATE `tb_cliente` SET `name` = '{$name}', `lastname` = '{$lastname}', `cnh`='{$cnh}', `email`='{$email}', `password`= '{$password}' WHERE `tb_cliente`.`username` = '{$username}'");
-        //$update = $this->conn->prepare("UPDATE tb_cliente SET name = '{$name}', lastname = '{$lastname}', email = '{$email}', cnh = '{$cnh}', password = '{$password}' WHERE  username = '{$username}'");
-        //$update = $this->conn->prepare("UPDATE `tb_cliente` SET `name`='{$name}',`lastname`='{$lastname}',`cnh`='{$cnh}',`email`='{$email}',`password`= '{$password}' WHERE username = '{$username}'");
         $run = $update->execute();
 
         if($run){
+            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../views/index.html'>";            
             echo '<h3>Usuario editado com sucesso!!</h3><br>';
             echo '<p>Redirecionando para página principal...</p>';
         } else{
@@ -87,8 +87,52 @@ class conectar extends config{
     }
 
 
-    function redefinirSenha(){
+    function gerarchave($email){
+        $query = $this->conn->prepare("SELECT * FROM tb_cliente WHERE email = :email");        
+        $query->bindValue(":email", $email);
+        $run = $query->execute();
+
+        $info = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($info) {
+            $chave = md5($info["username"].$info["password"]);
+            return $chave;
+        } else {
+            echo '<h1>Erro ao gerar chave</h1>';   
+        }
         
+    }
+
+
+    function validarchave($email, $chave){
+        $query = $this->conn->prepare("SELECT * FROM tb_cliente WHERE email = :email");        
+        $query->bindValue(":email", $email);
+        $run = $query->execute();
+
+        $info = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($info) {
+            $chaveoriginal = md5($info["username"].$info["password"]);
+            if ($chave == $chaveoriginal) {
+                return $info["username"];
+
+            } 
+        }
+    }
+
+
+    function novasenha($password, $username){
+        $update = $this->conn->prepare("UPDATE `tb_cliente` SET `password`= '{$password}' WHERE `tb_cliente`.`username` = '{$username}'");
+        $run = $update->execute();
+        if($run){
+            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../views/index.html'>";
+            echo '<h3>Senha alterada com sucesso!!</h3><br>';
+            echo '<p>Redirecionando para página principal...</p>';
+        } else{
+            echo '<h3>Ocorreu um erro ao alterar senha :(</h3><br>';
+            echo '<p>Tente novamente mais tarde</p>';
+            echo '<p>Redirecionando...</p>';
+        }
     }
 
 }
