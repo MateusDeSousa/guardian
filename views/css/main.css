@@ -29,7 +29,7 @@
 }
 
 .card-img img {
-	width: 40rem;
+	width: 30rem;
 	margin-left: 2rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
@@ -41,7 +41,7 @@
 
 .botoes {
 	display: inline;
-	margin-left: 52rem; /* SE TIRAR O COMENTÁRIO DO BOTÃO DE CANCELAR, MODIFICAR PARA 45REM */
+	margin-left: 68rem; /* SE TIRAR O COMENTÁRIO DO BOTÃO DE CANCELAR, MODIFICAR PARA 45REM */
 }
 
 .form-data {
