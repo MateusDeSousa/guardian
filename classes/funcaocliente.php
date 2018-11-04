@@ -30,7 +30,7 @@ class conectar extends config{
             header('location:../../index.php'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index            
             $_SESSION['msn'] = '<p style="color: red">Login não efetuado</p><br>';
         } else {
-            header('location:../../views/index.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
+            header('location:../../views/login_sucesso.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
         }
     }
 
