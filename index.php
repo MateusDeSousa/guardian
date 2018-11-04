@@ -15,6 +15,7 @@
 <body>
     <div class="login-page">
         <div class="form">
+          <img src="views/img/logo_bg_white.png" style="width: 15rem; margin-bottom: 1rem;"/>
           <form class="register-form" method="POST" action="php_utilities/cliente/cadastrarcliente.php">
             <input type="text" placeholder="Nome" name="name"/>
             <input type="text" placeholder="Sobrenome" name="lastname"/>
