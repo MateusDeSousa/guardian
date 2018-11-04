@@ -1,11 +1,11 @@
 <?php
     include_once '../config/config.php';
 
-    $car_brand = $_POST['car_brand'];
-    $car_model = $_POST['car_model'];
-    $year = $_POST['year'];
-    $seats_qtd = $_POST['seats_qtd'];
-    $door_qtd = $_POST['door_qtd'];
+    $car_brand = strtolower($_POST['car_brand']);
+    $car_model = strtolower($_POST['car_model']);
+    $year = strtolower($_POST['year']);
+    $seats_qtd = strtolower($_POST['seats_qtd']);
+    $door_qtd = strtolower($_POST['door_qtd']);
     $air_cond;
 
     if(!isset($_POST['air_cond_true'])){
