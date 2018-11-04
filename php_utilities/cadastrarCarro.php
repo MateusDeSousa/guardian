@@ -3,9 +3,9 @@
 
     $car_brand = strtolower($_POST['car_brand']);
     $car_model = strtolower($_POST['car_model']);
-    $year = strtolower($_POST['year']);
-    $seats_qtd = strtolower($_POST['seats_qtd']);
-    $door_qtd = strtolower($_POST['door_qtd']);
+    $year = $_POST['year'];
+    $seats_qtd = $_POST['seats_qtd'];
+    $door_qtd = $_POST['door_qtd'];
     $air_cond;
 
     if(!isset($_POST['air_cond_true'])){
