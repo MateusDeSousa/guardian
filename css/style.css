@@ -51,7 +51,7 @@ margin-right: auto
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: #7f7f7f;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -62,7 +62,8 @@ margin-right: auto
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+  opacity: 0.8;
+  transition: 1s;
 }
 .form .message {
   margin: 15px 0 0;
