@@ -46,7 +46,8 @@ CREATE TABLE `tb_cliente` (
 
 CREATE TABLE `tb_funcionario` (
   `id` int(11) NOT NULL,
-  `user` varchar(30) COLLATE utf8_bin NOT NULL,
+  `username` varchar(30) COLLATE utf8_bin NOT NULL,
+  `email` varchar(100) COLLATE utf8_bin NOT NULL,  
   `password` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -131,3 +132,10 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+--mudanças no banco 04/10/2018 16:46
+ALTER TABLE `tb_funcionario` CHANGE `user` `username` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL;
+
+ALTER TABLE `tb_funcionario` ADD `email` VARCHAR(100) NOT NULL ;
