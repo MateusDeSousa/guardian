@@ -1,6 +1,6 @@
 <?php
 include_once '../../config/config.php';
-include_once '../../classes/funcaocliente.php';
+include_once '../../classes/funcaofuncionario.php';
 $conn = new conectar();
 
 $email = $_POST['email'];
