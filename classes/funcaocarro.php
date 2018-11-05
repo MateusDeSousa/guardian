@@ -17,18 +17,16 @@ class conectar extends config{
     }
 
 
-    function cadastrar($name, $lastName, $userName, $cnh, $emailAddress, $password){
-        $newUser = $this->conn->prepare("INSERT INTO tb_cliente(name, lastname, username, cnh, email, password) VALUES ('$name', '$lastName', '$userName', '$cnh', '$emailAddress', '$password')");
-        $run = $newUser->execute();
+    function cadastrar($marca, $modelo, $ano, $qtdlugares, $ac, $abs, $som, $portas, $status, $chassi, $diaria){
+        $newcar = $this->conn->prepare("INSERT INTO tb_veiculo(car_brand, car_model, year, seats_qtd, air_cond, abs, sound, door_qtd, status, chassis, value) VALUES ('$marca', '$modelo', '$ano', '$qtdlugares', '$ac', '$abs', '$som', '$portas', '$status', '$chassi', $preco)");
+        $run = $newcar->execute();
 
         if ($run) {
-            $_SESSION['msg'] = "<p style='color: green'>Seu cadastro foi realizado com sucesso</p>";
-            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../views/index.html'>";
+            //echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../views/.html'>";
             echo '<h3>Cadastro efetuado com sucesso!!</h3><br>';
             echo '<p>Redirecionando para página principal...</p>';
         } else {
-            $_SESSION['msg'] = "<p style='color: red'>ops!! cadstro não realizado</p>";
-            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../index.php'>";
+            //echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../index.php'>";
             echo '<h3>Ocorreu um erro no cadastro :(</h3><br>';
             echo '<p>Tente novamente...</p>';
             echo '<p>Redirecionando...</p>';
@@ -37,13 +35,13 @@ class conectar extends config{
     }
 
 
-    function excluir($username){
-        $delete = $this->conn->prepare("DELETE FROM tb_cliente WHERE username = '{$username}'");
+    function excluir($chassi){
+        $delete = $this->conn->prepare("DELETE FROM tb_veiculo WHERE chassis = '{$chassi}'");
         $run = $delete->execute();
 
         if($run){
-            echo '<meta HTTP-EQUIV="Refresh" CONTENT="3;URL=../../index.php">';            
-            echo '<h3>Usuario deletado com sucesso!!</h3><br>';
+            //echo '<meta HTTP-EQUIV="Refresh" CONTENT="3;URL=../../index.php">';            
+            echo '<h3>Carro deletado com sucesso!!</h3><br>';
             echo '<p>Redirecionando para página principal...</p>';
         } else{
             echo '<h3>Ocorreu um erro ao deletar usuario :(</h3><br>';
