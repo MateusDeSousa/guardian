@@ -139,3 +139,7 @@ COMMIT;
 ALTER TABLE `tb_funcionario` CHANGE `user` `username` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL;
 
 ALTER TABLE `tb_funcionario` ADD `email` VARCHAR(100) NOT NULL ;
+
+ALTER TABLE `tb_veiculo` ADD `chassis` VARCHAR(20) NOT NULL ;
+
+ALTER TABLE `tb_veiculo` ADD PRIMARY KEY( `chassis`);
