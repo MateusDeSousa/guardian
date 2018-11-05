@@ -37,7 +37,7 @@
             <input type="password" name="password" placeholder="Senha"/>
             <button>Login</button>
             <p class="message">Não é cadastrado? <a href="#">Criar uma Conta</a></p>
-            <p class="message">Esqueceu a Senha? <a href="views/formulariosredefinicao/solicitarnovasenha.html">Clique Aqui</a></p>
+            <p class="message">Esqueceu a Senha? <a href="views/formularios/solicitarnovasenhacliente.html">Clique Aqui</a></p>
           </form>
         </div>
       </div>
