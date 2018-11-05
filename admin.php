@@ -16,28 +16,27 @@
     <div class="login-page">
         <div class="form">
           <img src="views/img/logo_bg_white.png" style="width: 15rem; margin-bottom: 1rem;"/>
-          <form class="register-form" method="POST" action="php_utilities/cliente/cadastrarcliente.php">
-            <input type="text" placeholder="Nome" name="name"/>
-            <input type="text" placeholder="Sobrenome" name="lastname"/>
+          <form class="register-form" method="POST" action="php_utilities/funcionario/cadastrarfunc.php">
+            <input type="text" placeholder="Digite seu email" name="email"/>
             <input type="text" placeholder="Nome de Usuário" name="username"/>
-            <input type="text" placeholder="CNH" name="cnh"/>            
-            <input type="text" placeholder="Email" name="email"/>
             <input type="password" placeholder="Senha" name="password"/>            
             <button>Cadastrar</button>
             <p class="message">Já é cadastrado? <a href="#">Fazer Login</a></p>
           </form>
-          <form class="login-form" method="POST" action="php_utilities/cliente/login.php">
+          <form class="login-form" method="POST" action="php_utilities/funcionario/login.php">
             <?php
               if(isset($_SESSION['msn'])){
                 echo $_SESSION['msn'];
                 unset($_SESSION['msn']);  
               }
             ?>
-            <input type="text" name="username" placeholder="Nome de Usuário"/>
+            <input type="text" name="username" placeholder="Usuario funcionario"/>
             <input type="password" name="password" placeholder="Senha"/>
             <button>Login</button>
             <p class="message">Não é cadastrado? <a href="#">Criar uma Conta</a></p>
-            <p class="message">Esqueceu a Senha? <a href="views/formulariosredefinicao/solicitarnovasenha.html">Clique Aqui</a></p>
+            <form>  
+              <p class="message">Esqueceu a Senha? <a href="views/formularios/solicitarnovasenhafunc.html">Clique Aqui</a></p>
+            </form>
           </form>
         </div>
       </div>
