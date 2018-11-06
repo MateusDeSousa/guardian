@@ -1,0 +1,41 @@
+<?php
+  session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guardian - Cadastrar Carro</title>
+    <link rel="stylesheet" href="../../Assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../Assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+          <form class="login-form" method="POST" action="../../Controllers/carro/cadastrarCarro.php">
+            <input type="text" name="car_brand" placeholder="Marca do Carro" required/>
+            <input type="text" name="car_model" placeholder="Modelo" required/>
+            <input type="number" name="year" placeholder="Ano" required/>
+            <input type="number" name="seats_qtd" placeholder="Quantidade de Lugar" required/>
+            <input type="number" name="door_qtd" placeholder="Quantidade de Portas" required/>
+            <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="checkbox" name="air_cond_true" aria-label="...">
+                </span>
+                <label type="text" class="form-control" aria-label="...">Possui Ar Condicionado</label>
+            </div><!-- /input-group -->
+            <div class="input-group" style="margin-top: 1rem; margin-bottom: 1rem;">
+                <span class="input-group-addon">
+                  <input type="checkbox" name="air_cond_false" aria-label="...">
+                </span>
+                <label type="text" class="form-control" aria-label="...">Não Possui Ar Condicionado</label>
+            </div><!-- /input-group -->
+            <button>Cadastrar Carro</button>
+          </form>
+        </div>
+      </div>
+</body>
+</html>
