@@ -22,7 +22,7 @@
   ?>
     <div class="login-page">
         <div class="form">
-          <form class="login-form" method="POST" action="../../Views/cliente/novasenhacliente.php">
+          <form class="login-form" method="POST" action="../../controllers/cliente/novasenhacliente.php">
             <input type="hidden" name="chave" value="<?php echo $chave; ?>">
             <input type="email" name="email" placeholder="Confirme seu email"/>            
             <input type="password" name="password1" placeholder="Digite a nova senha"/>

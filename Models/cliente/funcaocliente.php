@@ -23,7 +23,7 @@ class conectar extends config{
 
         $run = $sql->execute();
 
-        $info = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['info'] = $sql->fetchAll(PDO::FETCH_ASSOC);
 
         // se o array tiver vazio (banco não achou registro), redireciona pra login novamente
     }
@@ -35,12 +35,12 @@ class conectar extends config{
 
         if ($run) {
             $_SESSION['msg'] = "<p style='color: green'>Seu cadastro foi realizado com sucesso</p>";
-            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../views/index.html'>";
+            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../Views/cliente/login_sucessoclient'>";
             echo '<h3>Cadastro efetuado com sucesso!!</h3><br>';
             echo '<p>Redirecionando para página principal...</p>';
         } else {
             $_SESSION['msg'] = "<p style='color: red'>ops!! cadstro não realizado</p>";
-            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../index.php'>";
+            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../index.php'>";
             echo '<h3>Ocorreu um erro no cadastro :(</h3><br>';
             echo '<p>Tente novamente...</p>';
             echo '<p>Redirecionando...</p>';
@@ -121,7 +121,7 @@ class conectar extends config{
         $update = $this->conn->prepare("UPDATE `tb_cliente` SET `password`= '{$password}' WHERE `tb_cliente`.`username` = '{$username}'");
         $run = $update->execute();
         if($run){
-            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../views/index.html'>";
+            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../Views/cliente/login_sucessoclient.html'>";
             echo '<h3>Senha alterada com sucesso!!</h3><br>';
             echo '<p>Redirecionando para página principal...</p>';
         } else{
