@@ -4,19 +4,18 @@ include_once '../../Config/config.php';
 include_once '../../Models/cliente/funcaocliente.php';
 $conn = new conectar();
 
-
+//$info = 'teste';
 $username = $_POST['username'];
 $password = $_POST['password'];
 $passwordMD5 = md5($password); // md5 do password pra comparar no banco
-
 $executar = $conn->login($username, $passwordMD5);
-
-if(empty($info)) {
+//echo $info;
+if(empty($_SESSION['info'])) {
     header('location:../../index.php'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index            
     $_SESSION['msn'] = '<p style="color: red">Login não efetuado</p><br>';
 } else {
     $_SESSION['usuario'] = $username;
-    header('location:../../views/login_sucesso.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
+    header('location:../../Views/cliente/login_sucessoclient.html'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
 }
 /*
 // Checa se já está logado para mover para pagina home
