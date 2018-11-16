@@ -4,16 +4,30 @@ include_once '../../Config/config.php';
 include_once '../../Models/cliente/funcaocliente.php';
 $conn = new conectar();
 
-$name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
-$lastName = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_STRING);
-$userName = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
-$cnh = filter_input(INPUT_POST, "cnh", FILTER_SANITIZE_STRING);
-$emailAddress = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-$password = md5(filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING));
-
-$funcao = $conn->cadastrar($name, $lastName, $userName, $cnh, $emailAddress, $password);
-
+$name = $_POST['name'];
+$userName = $_POST['username'];
+$lastName = $_POST['lastname'];
+$cnh = $_POST['cnh'];
+$emailAddress = $_POST['email'];
+$password = $_POST['password'];
+$passwordMD5 = md5($password);
 
 
+$funcao = $conn->cadastrar($name, $lastName, $userName, $cnh, $emailAddress, $passwordMD5);
+
+if (!empty($_SESSION['infoCadastro'])) {
+
+    $_SESSION['msg'] = "<p style='color: green'>Seu cadastro foi realizado com sucesso</p>";
+    echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../Views/cliente/login_sucessoclient.html'>";
+    echo '<h3>Cadastro efetuado com sucesso!!</h3><br>';
+    echo '<p>Redirecionando para página principal...</p>';
+    
+}else{
+    $_SESSION['msg'] = "<p style='color: red'>ops!! cadstro não realizado</p>";
+    echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../index.php'>";
+    echo '<h3>Ocorreu um erro no cadastro :(</h3><br>';
+    echo '<p>Tente novamente...</p>';
+    echo '<p>Redirecionando...</p>';
+}
 
 ?>

@@ -1,5 +1,9 @@
 <?php
-    session_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+
 
 include_once '../../Config/config.php';
 
@@ -31,20 +35,9 @@ class conectar extends config{
 
     function cadastrar($name, $lastName, $userName, $cnh, $emailAddress, $password){
         $newUser = $this->conn->prepare("INSERT INTO tb_cliente(name, lastname, username, cnh, email, password) VALUES ('$name', '$lastName', '$userName', '$cnh', '$emailAddress', '$password')");
-        $run = $newUser->execute();
+        $_SESSION['infoCadastro'] = $newUser->execute();
 
-        if ($run) {
-            $_SESSION['msg'] = "<p style='color: green'>Seu cadastro foi realizado com sucesso</p>";
-            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../Views/cliente/login_sucessoclient'>";
-            echo '<h3>Cadastro efetuado com sucesso!!</h3><br>';
-            echo '<p>Redirecionando para página principal...</p>';
-        } else {
-            $_SESSION['msg'] = "<p style='color: red'>ops!! cadstro não realizado</p>";
-            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../index.php'>";
-            echo '<h3>Ocorreu um erro no cadastro :(</h3><br>';
-            echo '<p>Tente novamente...</p>';
-            echo '<p>Redirecionando...</p>';
-        }
+        
 
     }
 
