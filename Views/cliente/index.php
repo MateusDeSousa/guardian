@@ -1,3 +1,11 @@
+<?php
+  session_start();
+  // Checa se já está logado para mover para pagina de login
+  if (!isset($_SESSION['usuario'])) {
+    header('location: ../../index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +45,7 @@
 				  <li><a href="#"><i class="glyphicon glyphicon-trash"></i> Excluir</a></li>
 				  <!--<li><a href="#">Something else here</a></li>-->
 				  <li role="separator" class="divider"></li>
-				  <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+				  <li><a href="../../Controllers/cliente/logout.php"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
 				</ul>
 			  </li>
 			</ul>
