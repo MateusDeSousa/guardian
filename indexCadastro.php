@@ -21,19 +21,21 @@
     <div class="login-page">
         <div class="form">
           <img src="Assets/img/logo_bg_white.png" style="width: 15rem; margin-bottom: 1rem;"/>
-
-          <form class="login-form" method="POST" action="Controllers/cliente/login.php">
+          <form class="login-form" method="POST" action="Controllers/cliente/cadastrarcliente.php">
             <?php
-              if(isset($_SESSION['msn'])){
-                echo $_SESSION['msn'];
-                unset($_SESSION['msn']);  
+              if(isset($_SESSION['msg'])){
+                echo $_SESSION['msg'];
+                unset($_SESSION['msg']);  
               }
             ?>
-            <input type="text" name="username" placeholder="Nome de Usuário"/>
-            <input type="password" name="password" placeholder="Senha"/>
-            <button>Login</button>
-            <p class="message">Não é cadastrado? <a href="indexCadastro.php">Criar uma Conta</a></p>
-            <p class="message">Esqueceu a Senha? <a href="Views/cliente/solicitarnovasenhacliente.html">Clique Aqui</a></p>
+            <input type="text" placeholder="Nome" name="name"/>
+            <input type="text" placeholder="Sobrenome" name="lastname"/>
+            <input type="text" placeholder="Nome de Usuário" name="username"/>
+            <input type="text" placeholder="CNH" name="cnh"/>            
+            <input type="text" placeholder="Email" name="email"/>
+            <input type="password" placeholder="Senha" name="password"/>            
+            <button>Cadastrar</button>
+            <p class="message">Já é cadastrado? <a href="index.php">Fazer Login</a></p>
           </form>
         </div>
       </div>
