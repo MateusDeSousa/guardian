@@ -4,8 +4,16 @@
     include_once '../../Models/cliente/funcaocliente.php';
     $conn = new conectar();
 
-    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
+    $executar = $conn->excluir($_SESSION['usuario']);
 
-    $executar = $conn->excluir($username);
+    if($_SESSION['infoDelete']){
+        $_SESSION['loggedin'] = false;
+        unset($_SESSION['loggedin']);
+        unset($_SESSION['currentkey']);
+        unset($_SESSION['usuario']);
+        $_SESSION['msn'] = '<p style="color: blue">Conta deletata</p>';
+        header('location:../../index.php');
+        
+    }
     
 ?>
