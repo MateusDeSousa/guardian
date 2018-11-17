@@ -1,5 +1,10 @@
 <?php
   session_start();
+  // Checa se já está logado para mover para pagina home
+  if (isset($_SESSION['usuario'])) {
+    header('location: Views/cliente/login_sucessoclient.html');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
