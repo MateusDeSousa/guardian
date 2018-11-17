@@ -73,17 +73,10 @@ class conectar extends config{
 
     function excluir($username){
         $delete = $this->conn->prepare("DELETE FROM tb_cliente WHERE username = '{$username}'");
-        $run = $delete->execute();
+        $_SESSION['infoDelete'] = $delete->execute();
+        
 
-        if($run){
-            echo '<meta HTTP-EQUIV="Refresh" CONTENT="3;URL=../../index.php">';            
-            echo '<h3>Usuario deletado com sucesso!!</h3><br>';
-            echo '<p>Redirecionando para página principal...</p>';
-        } else{
-            echo '<h3>Ocorreu um erro ao deletar usuario :(</h3><br>';
-            echo '<p>Tente novamente...</p>';
-            echo '<p>Redirecionando...</p>';
-        }
+        //$_SESSION['infoDelete'] = $delete->fetch(PDO::FETCH_ASSOC);
     }
 
 

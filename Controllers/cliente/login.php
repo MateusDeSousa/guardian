@@ -11,7 +11,7 @@ $executar = $conn->login($username, $passwordMD5);
 
 if(empty($_SESSION['info'])) {
     header('location:../../index.php'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index            
-    $_SESSION['msn'] = '<p style="color: red">Login não efetuado</p><br>';
+    $_SESSION['msn'] = '<p style="color: red">Login não efetuado</p>';
 } else {
     $_SESSION['usuario'] = $username;
     $_SESSION['loggedin'] = true;
