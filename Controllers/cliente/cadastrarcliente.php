@@ -17,8 +17,8 @@ $funcao = $conn->cadastrar($name, $lastName, $userName, $cnh, $emailAddress, $pa
 
 if (!empty($_SESSION['infoCadastro'])) {
 
-    $_SESSION['msg'] = "<p style='color: green'>Seu cadastro foi realizado com sucesso</p>";
-    header('location:../../indexCadastro.php');
+    $_SESSION['msn'] = '<p style="color: green">Seu cadastro foi realizado com sucesso</p>';
+    header('location:../../index.php');
     
 }else{
     $_SESSION['msg'] = $_SESSION['erroCadastro'];
