@@ -34,8 +34,37 @@ class conectar extends config{
 
 
     function cadastrar($name, $lastName, $userName, $cnh, $emailAddress, $password){
-        $newUser = $this->conn->prepare("INSERT INTO tb_cliente(name, lastname, username, cnh, email, password) VALUES ('$name', '$lastName', '$userName', '$cnh', '$emailAddress', '$password')");
-        $_SESSION['infoCadastro'] = $newUser->execute();
+        $sql = $this->conn->prepare("SELECT * FROM tb_cliente WHERE username = :username");        
+        $sql->bindValue(":username", $userName);
+        $run = $sql->execute();
+        $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+        // Verifica se o nome de usuario já existe
+        if(!$resultado){
+            $sql = $this->conn->prepare("SELECT * FROM tb_cliente WHERE cnh = :cnh");
+            $sql->bindValue(":cnh", $cnh);
+            $run = $sql->execute();        
+            $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+        // Verifica se a CNH já está registrada no sistema
+            if (!$resultado) {
+                $sql = $this->conn->prepare("SELECT * FROM tb_cliente WHERE email = :email");
+                $sql->bindValue(":email", $emailAddress);
+                $run = $sql->execute();        
+                $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+        // Verifica se o email já está cadastrado no sistema
+                if(!$resultado){
+                    $newUser = $this->conn->prepare("INSERT INTO tb_cliente(name, lastname, username, cnh, email, password) VALUES ('$name', '$lastName', '$userName', '$cnh', '$emailAddress', '$password')");
+                    $_SESSION['infoCadastro'] = $newUser->execute();
+                }else{
+                    $_SESSION['erroCadastro'] = '<p style="color: red">Email já existe</p>';
+                }
+            }else{
+                $_SESSION['erroCadastro'] = '<p style="color: red">Cnh já existe</p>';
+            }
+        }else{
+            $_SESSION['erroCadastro'] = '<p style="color: red">usuario já existe</p>';
+        }
+        
+        
 
         
 
