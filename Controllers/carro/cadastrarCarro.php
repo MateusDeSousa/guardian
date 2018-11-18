@@ -6,7 +6,7 @@
     $year = $_POST['year'];
     $seats_qtd = $_POST['seats_qtd'];
     $door_qtd = $_POST['door_qtd'];
-    $air_cond;
+    $air_cond = $_POST['air_cond'];
 
     if(!isset($_POST['air_cond_true'])){
         if(!isset($_POST['air_cond_false'])){

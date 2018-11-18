@@ -80,26 +80,111 @@ class conectar extends config{
     }
 
 
-    function editar($name, $lastname, $username, $cnh, $email, $password){
-        $update = $this->conn->prepare("UPDATE `tb_cliente` SET `name` = '{$name}', `lastname` = '{$lastname}', `cnh`='{$cnh}', `email`='{$email}', `password`= '{$password}' WHERE `tb_cliente`.`username` = '{$username}'");
-        $run = $update->execute();
+    function solicitarDados($username){
+        $buscar = $this->conn->prepare("SELECT * FROM tb_cliente WHERE username = :username");
+        $buscar->bindValue(":username", $username);
+        $run = $buscar->execute();
 
-        if($run){
-            echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../views/index.html'>";            
-            echo '<h3>Usuario editado com sucesso!!</h3><br>';
-            echo '<p>Redirecionando para página principal...</p>';
-        } else{
-            echo '<h3>Ocorreu um erro ao editar usuario :(</h3><br>';
-            echo '<p>Tente novamente...</p>';
-            echo '<p>Redirecionando...</p>';
-        }
+        /*$update = $this->conn->prepare("UPDATE `tb_cliente` SET `name` = '{$name}', `lastname` = '{$lastname}', `cnh`='{$cnh}', `email`='{$email}', `password`= '{$password}' WHERE `tb_cliente`.`username` = '{$username}'");
+        $run = $update->execute();
+        */
+        $user = $buscar->fetch(PDO::FETCH_ASSOC);
+        return $user;
+      
         
     }
 
+    function editar($username, $name, $lastname, $cnh, $email){
+        
+        //-------- Executa o if abaixo se o email e a CNH não for modificada-----------//
+
+        if (strcmp($cnh, $_SESSION['cnh']) == 0 && (strcmp($email, $_SESSION['email']) == 0)) {
+
+            $update = $this->conn->prepare("UPDATE `tb_cliente` SET `name` = '{$name}', `lastname` = '{$lastname}', `cnh`='{$cnh}', `email`='{$email}' WHERE `tb_cliente`.`username` = '{$username}'");
+            $run = $update->execute();
+            return $run;
+        }
+
+        //-------------------------------FIM----------------------------------------//
+
+        //-------- Executa o if abaixo se somente email for modificado-----------//
+
+        if (strcmp($cnh, $_SESSION['cnh']) == 0) {
+            $sql = $this->conn->prepare("SELECT * FROM tb_cliente WHERE email = :email");
+            $sql->bindValue(":email", $email);
+            $run = $sql->execute();        
+            $user = $sql->fetch(PDO::FETCH_ASSOC);
+            
+            // Verifica se o email já está cadastrado no sistema
+            if($user == false){
+                $update = $this->conn->prepare("UPDATE `tb_cliente` SET `name` = '{$name}', `lastname` = '{$lastname}', `cnh`='{$cnh}', `email`='{$email}' WHERE `tb_cliente`.`username` = '{$username}'");
+                $run = $update->execute();
+                return $run;
+                exit();            
+            }else{
+                $_SESSION['AlterarUser'] = '<p style="color: red">Email já existe</p>';
+            }
+        }
+
+        //---------------------------------FIM do IF---------------------------------//
+
+        //-------- Executa o if abaixo se somente a CNH for modificada-----------//
+
+        if (strcmp($email, $_SESSION['email']) == 0) {
+            $sql = $this->conn->prepare("SELECT * FROM tb_cliente WHERE cnh = :cnh");
+            $sql->bindValue(":cnh", $cnh);
+            $run = $sql->execute();        
+            $user = $sql->fetch(PDO::FETCH_ASSOC);
+            
+            // Verifica se a CNH já está registrada no sistema
+            if($user == false){
+                $update = $this->conn->prepare("UPDATE `tb_cliente` SET `name` = '{$name}', `lastname` = '{$lastname}', `cnh`='{$cnh}', `email`='{$email}' WHERE `tb_cliente`.`username` = '{$username}'");
+                $run = $update->execute();
+                return $run;
+                exit();            
+            }else{
+                $_SESSION['AlterarUser'] = '<p style="color: red">CNH já existe</p>';
+            }
+        }
+
+        //---------------------------------------FIM do IF----------------------------//
+
+        //-------- Executa o if abaixo se o email e a CNH forem modificados-----------//
+
+        if (strcmp($cnh, $_SESSION['cnh']) != 0 && (strcmp($email, $_SESSION['email']) != 0)) {
+
+            $sql = $this->conn->prepare("SELECT * FROM tb_cliente WHERE cnh = :cnh");
+            $sql->bindValue(":cnh", $cnh);
+            $run = $sql->execute();        
+            $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+        // Verifica se a CNH já está registrada no sistema
+            if (!$resultado) {
+                $sql = $this->conn->prepare("SELECT * FROM tb_cliente WHERE email = :email");
+                $sql->bindValue(":email", $email);
+                $run = $sql->execute();        
+                $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+        // Verifica se o email já está cadastrado no sistema
+                if(!$resultado){
+                    $update = $this->conn->prepare("UPDATE `tb_cliente` SET `name` = '{$name}', `lastname` = '{$lastname}', `cnh`='{$cnh}', `email`='{$email}' WHERE `tb_cliente`.`username` = '{$username}'");
+                    $run = $update->execute();
+                    return $run;
+                    exit();
+                }else{
+                    $_SESSION['erroCadastro'] = '<p style="color: red">Email já existe</p>';
+                }
+            }else{
+                $_SESSION['erroCadastro'] = '<p style="color: red">Cnh já existe</p>';
+            }
+        }
+
+        //------------------------------------FIM do IF----------------------------------------------//
+
+    }
+    
 
 
     function gerarchave($email){
-        $query = $this->conn->prepare("SELECT * FROM tb_cliente WHERE email = :email");        
+        $query = $this->conn->prepare("SELECT * FROM tb_cliente WHERE email = :email");
         $query->bindValue(":email", $email);
         $run = $query->execute();
 

@@ -41,7 +41,7 @@
 			  <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" style="color:#f1f1f1 !important;" aria-haspopup="true" aria-expanded="false">CRUD CLIENTE <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-				  <li><a href="#"><i class="glyphicon glyphicon-pencil"></i> Alterar</a></li>
+				  <li><a href="../../Controllers/cliente/solicitardados.php"><i class="glyphicon glyphicon-pencil"></i> Alterar</a></li>
 				  <li><a href="../../Controllers/cliente/excluircliente.php"><i class="glyphicon glyphicon-trash"></i> Excluir Conta</a></li>
 				  <!--<li><a href="#">Something else here</a></li>-->
 				  <li role="separator" class="divider"></li>
