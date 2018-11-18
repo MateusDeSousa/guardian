@@ -4,13 +4,35 @@
     include_once '../../Models/cliente/funcaocliente.php';
     $conn = new conectar();
     
-    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
-    $lastname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_STRING);
-    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
-    $cnh = filter_input(INPUT_POST, "cnh", FILTER_SANITIZE_STRING);
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-    $password = md5(filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING));
-
-    $executar = $conn->editar($name, $lastname, $username, $cnh, $email, $password);
     
+
+    $name = $_POST['name'];
+    $lastname = $_POST['lastname'];
+    $username = $_SESSION['usuario'];
+    $cnh = $_POST['cnh'];
+    $email = $_POST['email'];
+    
+    if(empty($cnh)){
+        $cnh = $_SESSION['cnh'];
+        if (empty($email)) {
+            $email = $_SESSION['email'];
+        }
+    }else{
+        if (empty($email)) {
+            $email = $_SESSION['email'];
+        }
+    }
+    
+
+    $executar = $conn->editar($username , $name, $lastname, $cnh, $email);
+    
+
+    if (!empty($executar)) {
+        
+        header('location:../../Views/cliente/index.php');
+        
+    }else{
+        $_SESSION['msg'] = $_SESSION['AlterarUser'];
+        header('location:../../Views/cliente/editarcliente.php'); // se o array não estiver vazio (banco encontrou registro), redireciona pra index
+    }
 ?>
