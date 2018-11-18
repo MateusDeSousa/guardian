@@ -47,23 +47,50 @@
 
 	<main class="container">
 		<h2 class="text-center">Preencha o Formulário Abaixo:</h2>
-		<form action="#" class="form-data">
-			<div class="form-group">
-				<label for="data-retirada">Data de Retirada:</label>
-				<input type="date">
-			</div>
-			<div class="form-group">
-				<label for="data-entrega">Data de Entrega:</label>
-				<input type="date">
-			</div>
-			<div class="form-group">
-				<input type="checkbox" name="termos" id="termos">
-				<p style="display: inline">Li e Concordo com os <a href="#">Termos de Serviço.</a></p>
-			</div>
-			<a href="forma_pagamentos.html"><input type="button" class="btn btn-success btn-form-data" value="Prosseguir"></a>
-		</form>
+            <form action="#" class="form-data">
+                <div class="formas">
+                    	
+						  <input type="radio" id="boleto" name="gender" value="boleto" onclick="mostra_down()">
+						  <label for="boleto">Boleto</label>
+						
+						  <input type="radio" id="cartao" name="gender" value="cartao" onclick="mostra_cartao()">
+						  <label for="cartao">Cartão</label>
+						
+	                       <label id="mostrar_down" for="mostradown" style="display: none">
+								<a href="#" download="id.pdf">Clique aqui para o downlod do boleto</a>
+		                   </label>	  
+
+							<label id="mostrar_cartao" for="mostracartao" style="display: none" >
+								<input id="nome" type="text" placeholder="Nome" required="">
+	                       		<input id="email" type="text" placeholder="E-mail" required="">
+	                       		<input id="fone" type="number" placeholder="Fone:" required="">
+								</br>
+	                        	<input id="cartao" type="text" placeholder="Numero do Cartão" required="">
+	                        	<input id="data" type="text" placeholder="Data do Vencimento" required="">
+	                       		<input id="cod" type="text" placeholder="Codigo de Segurança" required="">
+	                      </label>															
+	
+                </div>
+                <input type="button" class="btn btn-success btn-form-data" value="Prosseguir">
+            </form>
+
+            <form class="form2">
+                <input type="hidden" name="nome">
+            </form>
 	</main>
-	<script src="../../Assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../../Assets/js/jquery-3.3.1.min.js"></script>
+    <script>
+        
+        function mostra_down(){
+        	document.getElementById('mostrar_down').style.display="block";
+        	document.getElementById('mostrar_cartao').style.display="none";
+		}
+		function mostra_cartao(){
+			document.getElementById('mostrar_cartao').style.display="block";
+			document.getElementById('mostrar_down').style.display="none";
+		}
+
+	</script>
 	<script src="../../Assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
