@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-include_once '../../config/config.php';
+    include_once '../../Config/config.php';
 
 class conectar extends config{
     var $conn;
@@ -17,21 +17,36 @@ class conectar extends config{
     }
 
 
-    function cadastrar($marca, $modelo, $ano, $qtdlugares, $ac, $abs, $som, $portas, $status, $chassi, $diaria){
-        $newcar = $this->conn->prepare("INSERT INTO tb_veiculo(car_brand, car_model, year, seats_qtd, air_cond, abs, sound, door_qtd, status, chassis, value) VALUES ('$marca', '$modelo', '$ano', '$qtdlugares', '$ac', '$abs', '$som', '$portas', '$status', '$chassi', $preco)");
-        $run = $newcar->execute();
+    function cadastrar($car_brand, $car_model, $year, $seat_qtd, $air_cond, $abs, $sound, $door_qtd, $status, $chassis, $board, $price){
+        $erro;
 
-        if ($run) {
-            //echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../../views/.html'>";
-            echo '<h3>Cadastro efetuado com sucesso!!</h3><br>';
-            echo '<p>Redirecionando para página principal...</p>';
-        } else {
-            //echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=../index.php'>";
-            echo '<h3>Ocorreu um erro no cadastro :(</h3><br>';
-            echo '<p>Tente novamente...</p>';
-            echo '<p>Redirecionando...</p>';
+        $buscarChassi = $this->conn->prepare("SELECT * FROM tb_carro WHERE chassis = :chassis");        
+        $buscarChassi->bindValue(":chassis", $chassis);
+        $executar = $buscarChassi->execute();
+        $resultado = $buscarChassi->fetch(PDO::FETCH_ASSOC);
+        // Verifica se o chassi já existe
+        if(!$resultado){
+            $buscarPlaca = $this->conn->prepare("SELECT * FROM tb_carro WHERE board = :board");
+            $buscarPlaca->bindValue(":board", $board);
+            $executar = $buscarPlaca->execute();        
+            $resultado = $buscarPlaca->fetch(PDO::FETCH_ASSOC);
+        // Verifica se a placa já está registrada no sistema
+            if (!$resultado) {
+                //insere carro no banco
+                $newcar = $this->conn->prepare("INSERT INTO tb_veiculo(car_brand, car_model, year, seats_qtd, air_cond, abs, sound, door_qtd, status, chassis, board, price) VALUES ('$car_brand', '$car_model', '$year', '$seat_qtd', '$air_cond', '$abs', '$sound', '$door_qtd', '$status', '$chassis', '$price')");
+                $executar = $newcar->execute();
+                return $executar;
+                exit();
+            }else{
+                $erro = '<p style="color: red">Placa já existe no sistema</p>';
+                return $erro;
+                exit();
+            }            
+        }else{
+            $erro = '<p style="color: red">Chassi já existe no sistema</p>';
+            return $erro;
+            exit();
         }
-
     }
 
 
