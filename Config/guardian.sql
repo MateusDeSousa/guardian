@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Nov-2018 às 16:51
+-- Generation Time: 20-Nov-2018 às 18:39
 -- Versão do servidor: 10.1.36-MariaDB
 -- versão do PHP: 7.2.11
 
@@ -101,18 +101,19 @@ CREATE TABLE `tb_veiculo` (
   `abs` varchar(3) COLLATE utf8_bin NOT NULL,
   `sound` varchar(3) COLLATE utf8_bin NOT NULL,
   `door_qtd` int(11) NOT NULL,
-  `status` varchar(30) COLLATE utf8_bin NOT NULL
+  `status` varchar(30) COLLATE utf8_bin NOT NULL,
+  `rent_date` date NOT NULL,
+  `return_date` date NOT NULL,
+  `value` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Extraindo dados da tabela `tb_veiculo`
 --
 
-INSERT INTO `tb_veiculo` (`id`, `car_brand`, `car_model`, `year`, `seats_qtd`, `air_cond`, `abs`, `sound`, `door_qtd`, `status`) VALUES
-(0, 'asd', 'asd', 1, 1, 'sim', 'nao', 'nao', 11, 'alugado'),
-(0, 'qweeeeee', 'qweeeeee', 111, 123, 'sim', 'sim', 'sim', 123, 'disponivel'),
-(1, 'asd', 'asd', 1, 1, 'sim', 'nao', 'nao', 11, 'alugado'),
-(2, 'qweeeeee', 'qweeeeee', 111, 123, 'sim', 'sim', 'sim', 123, 'disponivel');
+INSERT INTO `tb_veiculo` (`id`, `car_brand`, `car_model`, `year`, `seats_qtd`, `air_cond`, `abs`, `sound`, `door_qtd`, `status`, `rent_date`, `return_date`, `value`) VALUES
+(1, 'ford', 'fiesta', 2000, 5, 'sim', 'nao', 'sim', 4, 'disponivel', '2018-11-28', '2018-11-29', 70.5),
+(2, 'chevrolet', 'chevette', 1970, 5, 'nao', 'nao', 'sim', 4, 'disponivel', '2018-11-22', '2018-11-30', 50);
 
 --
 -- Indexes for dumped tables
