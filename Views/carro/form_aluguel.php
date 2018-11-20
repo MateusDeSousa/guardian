@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+]<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -47,20 +47,20 @@
 
 	<main class="container">
 		<h2 class="text-center">Preencha o Formulário Abaixo:</h2>
-		<form action="#" class="form-data">
+		<form action="../cliente/lista_carros.php" method="POST" class="form-data">
 			<div class="form-group">
 				<label for="data-retirada">Data de Retirada:</label>
-				<input type="date">
+				<input type="date" name="rent_date">
 			</div>
 			<div class="form-group">
 				<label for="data-entrega">Data de Entrega:</label>
-				<input type="date">
+				<input type="date" name="return_date">
 			</div>
 			<div class="form-group">
 				<input type="checkbox" name="termos" id="termos">
 				<p style="display: inline">Li e Concordo com os <a href="#">Termos de Serviço.</a></p>
 			</div>
-			<a href="forma_pagamentos.html"><input type="button" class="btn btn-success btn-form-data" value="Prosseguir"></a>
+			<a href="forma_pagamentos.html"><input type="submit" class="btn btn-success btn-form-data" value="Prosseguir"></a>
 		</form>
 	</main>
 	<script src="../../Assets/js/jquery-3.3.1.min.js"></script>

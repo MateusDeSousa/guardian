@@ -180,3 +180,19 @@ main {
     padding: 0px;
   }
   
+.code-input {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid gray;
+}
+
+.btn-custom {
+  background: #d19b3d;
+  color: #f1f1f1;
+}
+
+.btn-custom:hover {
+  background: #d19b3d;
+  color: #f1f1f1;
+  opacity: 0.9;
+}
