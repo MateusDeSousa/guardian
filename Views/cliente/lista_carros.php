@@ -67,18 +67,27 @@
 
 			$res_vehicles = mysqli_query($CON, $sql);
 
+			function gambiarra($palavra){
+				if ($palavra == 'nao') {
+					return "Não";
+				} else {
+					return "Sim";
+				}
+			}
+
 
 			while ($row = $res_vehicles->fetch_assoc()) {
                 echo '<div class="row"> <div class="card"> <div class="card-img"> <img src="../../Assets/img/placeholder-car.png" alt="car"> </div>';
 
-                echo '<div class="card-text"> <h3>'.$row['car_model'].'</h3>';
-                echo '<p><b>Marca:</b>'.$row['car_brand'].'</p>';
-                echo '<p><b>Ano:</b>'.$row['year'].'</p>';
-                echo '<p><b>Quantidade de Lugares:</b>'.$row['seats_qtd'].'</p>';
-                echo '<p><b>Quantidade de Portas:</b>'.$row['door_qtd'].'</p>';
-                echo '<p><b>Possui Ar Condicionado:</b>'.$row['air_cond'].'</p>';
-                echo '<p><b>Possui Freio ABS:</b>'.$row['abs'].'</p>';
-                echo '<p><b>Possui Som Automotivo:</b>'.$row['sound'].'</p>';
+                echo '<div class="card-text"> <h3>'.ucwords($row['car_model']).'</h3>';
+                echo '<p><b>Marca:</b>&nbsp;'.ucwords($row['car_brand']).'</p>';
+                echo '<p><b>Ano:</b>&nbsp;'.$row['year'].'</p>';
+                echo '<p><b>Quantidade de Lugares:</b>&nbsp;'.$row['seats_qtd'].'</p>';
+                echo '<p><b>Quantidade de Portas:</b>&nbsp;'.$row['door_qtd'].'</p>';
+                echo '<p><b>Possui Ar Condicionado:</b>&nbsp;'.gambiarra($row['air_cond']).'</p>';
+                echo '<p><b>Possui Freio ABS:</b>&nbsp;'.gambiarra($row['abs']).'</p>';
+                echo '<p><b>Possui Som Automotivo:</b>&nbsp;'.gambiarra($row['sound']).'</p>';
+                echo '<p><b>VALOR DA DIÁRIA </b>R$:'.$row['value'].'</p>';
 
                 /**   -----------------------------------------------------------------
                  *   | ESSA LINHA DE BAIXO VAI LINKAR PRA OUTRO LUGAAAAAAAAAAAAAAAAAR |
