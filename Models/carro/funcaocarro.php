@@ -50,6 +50,24 @@ class conectar extends config{
     }
 
 
+    function excluir($chassis){
+        $erro;
+        $buscarveiculo = $this->conn->prepare("SELECT * FROM tb_carro WHERE cassis = :chassis ");
+        $buscarveiculo->bindValue(":chassis", $chassis)
+        $retorno = $buscarveiculo->execute();
+        if (!empty($retorno)) {
+            $delete = $this->conn->prepare("DELETE FROM tb_carro WHERE chassis = '{$chassis}'");
+            $executar = $delete->execute();
+            return $executar;    
+        }else {
+            $erro = '<p style="color: red">Veiculo não encontrado</p>';
+            return $erro;
+        }
+        
+
+        //$_SESSION['infoDelete'] = $delete->fetch(PDO::FETCH_ASSOC);
+    }
+
     function excluir($chassi){
         $delete = $this->conn->prepare("DELETE FROM tb_veiculo WHERE chassis = '{$chassi}'");
         $run = $delete->execute();
