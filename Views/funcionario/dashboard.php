@@ -60,7 +60,6 @@
                 $res_rented_cars = mysqli_query($CON, $sql);
 
                 while ($row = $res_rented_cars->fetch_assoc()) {
-                    //$row['percentual_full'];
                     echo '<div class="card-carro">';
                     echo '<h3>ID: </h3> <p>'.$row['id'].'</p>';
                     echo '<h3>Marca: </h3> <p>'.ucwords($row['car_brand']).'</p>';
