@@ -10,4 +10,11 @@ class config{
     var $dbname = "guardian";
 }
 
+$server = 'localhost';
+$user = 'root';
+$pass = '';
+$db = 'guardian';
+
+$CON = mysqli_connect($server, $user, $pass, $db);
+
 ?>
