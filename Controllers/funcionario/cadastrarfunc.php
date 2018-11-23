@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once '../../config/config.php';
-include_once '../../classes/funcaofuncionario.php';
+include_once '../../Config/config.php';
+include_once '../../Classes/funcaofuncionario.php';
 $conn = new conectar();
 
 $userName = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);

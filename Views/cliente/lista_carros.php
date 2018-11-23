@@ -58,11 +58,13 @@
 		<h2 class="text-center">Carros Disponíveis</h2>
 
 		<?php
+			$rent_date = $_POST['rent_date']; //2018-11-28
+			$return_date = $_POST['return_date']; //2018-11-29
 
 			if (isset($_POST['model'])) {
-				$sql = "SELECT * FROM tb_veiculo WHERE car_model = '{$_POST['model']}' ";
+				$sql = "SELECT * FROM tb_veiculo WHERE car_model = '{$_POST['model']}' AND return_date BETWEEN date('{$rent_date}') AND date('{$return_date}') ";
 			} else {
-				$sql = "SELECT * FROM tb_veiculo";
+				$sql = "SELECT * FROM tb_veiculo WHERE return_date BETWEEN date('{$rent_date}') AND date('{$return_date}')";
 			}
 
 			$res_vehicles = mysqli_query($CON, $sql);
