@@ -55,52 +55,42 @@
 	  </nav>
 
 	<main class="container">
-		<h2 class="text-center">Carros Disponíveis</h2>
+		<h2 class="text-center">Efetuar Locação</h2>
+        
+        <?php
+            include('../../Config/config.php');
+            $id = $_GET['x'];
+            $sql_carro = "SELECT * FROM tb_veiculo WHERE id = ".$id;
 
-		<?php
-			$rent_date = $_POST['rent_date']; //2018-11-28
-			$return_date = $_POST['return_date']; //2018-11-29
+            $res_carro = mysqli_query($CON, $sql_carro);
 
-			if (isset($_POST['model'])) {
-				$sql = "SELECT * FROM tb_veiculo WHERE car_model = '{$_POST['model']}' AND return_date BETWEEN date('{$rent_date}') AND date('{$return_date}') ";
-			} else {
-				$sql = "SELECT * FROM tb_veiculo WHERE return_date BETWEEN date('{$rent_date}') AND date('{$return_date}')";
-			}
-
-			$res_vehicles = mysqli_query($CON, $sql);
-
-			function gambiarra($palavra){
-				if ($palavra == 'nao') {
-					return "Não";
-				} else {
-					return "Sim";
-				}
-			}
-
-
-			while ($row = $res_vehicles->fetch_assoc()) {
-                echo '<div class="row"> <div class="card"> <div class="card-img"> <img src="../../Assets/img/placeholder-car.png" alt="car"> </div>';
-
-                echo '<div class="card-text"> <h3>'.ucwords($row['car_model']).'</h3>';
-                echo '<p><b>Marca:</b>&nbsp;'.ucwords($row['car_brand']).'</p>';
-                echo '<p><b>Ano:</b>&nbsp;'.$row['year'].'</p>';
-                echo '<p><b>Quantidade de Lugares:</b>&nbsp;'.$row['seats_qtd'].'</p>';
-                echo '<p><b>Quantidade de Portas:</b>&nbsp;'.$row['door_qtd'].'</p>';
-                echo '<p><b>Possui Ar Condicionado:</b>&nbsp;'.gambiarra($row['air_cond']).'</p>';
-                echo '<p><b>Possui Freio ABS:</b>&nbsp;'.gambiarra($row['abs']).'</p>';
-                echo '<p><b>Possui Som Automotivo:</b>&nbsp;'.gambiarra($row['sound']).'</p>';
-                echo '<p><b>VALOR DA DIÁRIA </b>R$:'.$row['value'].'</p>';
-
-                /**   -----------------------------------------------------------------
-                 *   | ESSA LINHA DE BAIXO VAI LINKAR PRA OUTRO LUGAAAAAAAAAAAAAAAAAR |
-                 *   -----------------------------------------------------------------
+            while ($row = $res_carro->fetch_assoc()) {
+                /**
+                 * DADOS QUE VEM DA TABELA DE CARRO
                  */
-								$x = $row['id'];
-                echo '<div class="botoes"> <a href="efetuar_locacao.php?x='.$x.'" class="btn btn-login btn-success">Alugar Carro</a>';
-                echo '</div></div></div></div>';
+                $id_carro = $row['car_id'];
+                $valor = 'VER AQUI COMO FAZER PRA CHECAR ISSO';
+                $marca_carro = $row['car_brand'];
+                $modelo_carro = $row['car_model'];
+                /**
+                 * VALOR DEFAULT DE LOCAÇÃO
+                
+                $status = 'pendente';
+                /**
+                 * DADOS RECEBIDOS POR SESSION
+                 */
+                $nome_cliente = 'VER COM O MATEUZIN AS PARADA DA SESSION';
+                $id_cliente = 'VER COM O MATEUZIN AS PARADA DA SESSION';
+                $dia_aluguel = 'PASSAR COM A SESSION TBM';
+                $dia_devolucao = 'PASSAR COM A SESSION TBM';
             }
 
-		?>
+            $sql = "INSERT INTO tb_locacao (`car_id`, `client_id`, `value`, `status`, `rent_date`, `return_date`, `car_brand`, `car_model`, `client_name`)";
+            $sql .= " VALUES ";
+            $sql .= "{$id_carro},{$id_cliente},{$valor},'{$status}','{$dia_aluguel}','{$dia_devolucao}','{$marca_carro}','{$modelo_carro}','{$nome_cliente}'";
+
+        ?>
+
 
 	</main>
 	<script src="../../Assets/js/jquery-3.3.1.min.js"></script>
