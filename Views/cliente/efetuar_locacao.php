@@ -28,7 +28,7 @@
 			  <span class="icon-bar"></span>
 			  <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#"><img src="../../Assets/img/logo_bg_none.png" id="logo" alt=""></a>
+			<a class="navbar-brand" href="lista_carros.php"><img src="../../Assets/img/logo_bg_none.png" id="logo" alt=""></a>
 		  </div>
 	  
 		  <!-- Collect the nav links, forms, and other content for toggling -->
@@ -78,23 +78,40 @@
                 /**
                  * DADOS RECEBIDOS POR SESSION
                  */
-                $nome_cliente = 'VER COM O MATEUZIN AS PARADA DA SESSION';
-                $id_cliente = 'VER COM O MATEUZIN AS PARADA DA SESSION';
-                $dia_aluguel = 'PASSAR COM A SESSION TBM';
-                $dia_devolucao = 'PASSAR COM A SESSION TBM';
+                $nome_cliente = 'joaozinho';
+                $id_cliente = 2;
+                $dia_aluguel = '2018-11-01';
+                $dia_devolucao = '2018-11-04';
             }
 
             /**
              * VER COMO VAI TRATAR ISSO AQUI
              */
-            $valor_total_locacao = $valor_diaria_carro * 1;
+            $valor_total_locacao = $valor_diaria_carro * 3;
 
-            $sql = "INSERT INTO tb_locacao (`car_id`, `client_id`, `value`, `status`, `rent_date`, `return_date`, `car_brand`, `car_model`, `client_name`)";
+            $sql = "INSERT INTO tb_locacao (car_id, client_id, value, status, rent_date, return_date, car_brand, car_model, client_name)";
             $sql .= " VALUES ";
-            $sql .= "{$id_carro},{$id_cliente},{$valor_total_locacao},'{$status}','{$dia_aluguel}','{$dia_devolucao}','{$marca_carro}','{$modelo_carro}','{$nome_cliente}'";
+            $sql .= "({$id_carro},{$id_cliente},{$valor_total_locacao},'{$status}','{$dia_aluguel}','{$dia_devolucao}','{$marca_carro}','{$modelo_carro}','{$nome_cliente}')";
 
+            $res_add_locacao = mysqli_query($CON, $sql);
+            $sql = "SELECT * FROM tb_locacao WHERE car_id = {$id_carro}";
+            $res_x = mysqli_query($CON, $sql);
+
+            while ($row = $res_x->fetch_assoc()) {
+              $usar_locacao = $row['id'];
+            }
+
+        
         ?>
 
+            <div class="form-data">
+              <h3>Locação Concluída com Sucesso!!</h3>
+              <p>Por favor, guarde esse código.</p>
+              <p>Você utilizará para a retirada do carro.</p>
+
+              <h4>CÓDIGO:</h4>
+              <h4 style="color: red"><?php echo $usar_locacao ?></h4>
+            </div>
 
 	</main>
 	<script src="../../Assets/js/jquery-3.3.1.min.js"></script>

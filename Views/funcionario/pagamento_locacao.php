@@ -54,6 +54,7 @@
 
         echo $sql;
         var_dump($res_update);
+        header('location: dashboard.php');
 
     ?>
     </main>
