@@ -57,9 +57,9 @@
 
             <?php
                 if(isset($_POST['rent_id'])){
-                    $sql = "SELECT * FROM tb_locacao WHERE id = ".$_POST['rent_id'];
+                    $sql = "SELECT * FROM tb_locacao WHERE status = 'pendente' AND id = ".$_POST['rent_id'];
                 } else {
-                    $sql = "SELECT * FROM tb_locacao";    
+                    $sql = "SELECT * FROM tb_locacao WHERE status = 'pendente' ";    
                 }
                 
                 $res_rented_cars = mysqli_query($CON, $sql);
