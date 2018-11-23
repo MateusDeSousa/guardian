@@ -45,40 +45,17 @@
         </div>
     </div>
     <main>
-        <div class="rent-header">
-            <h2>Carros <span style="color: #d19b3d;">Alugados</span></h2>
-            <form action="#" method="POST">
-                <span>Filtrar por Código</span>
-                <input type="text" name="rent_id" class="code-input" id="id_locacao">
-                <input type="submit" class="btn btn-custom" value="Filtrar">
-            </form>
-        </div>
-        <div id="card-wrapper">
+    <?php
+        echo $_GET['x'];
 
-            <?php
-                if(isset($_POST['rent_id'])){
-                    $sql = "SELECT * FROM tb_locacao WHERE id = ".$_POST['rent_id'];
-                } else {
-                    $sql = "SELECT * FROM tb_locacao";    
-                }
-                
-                $res_rented_cars = mysqli_query($CON, $sql);
+        $sql = "UPDATE tb_locacao SET status = 'concluida' WHERE id = {$_GET['x']}"; //rent_date = [value-11], return_date = [value-12]
+        
+        $res_update = mysqli_query($CON, $sql);
 
-                while ($row = $res_rented_cars->fetch_assoc()) {
-                    $x = $row['id'];
-                    echo '<div class="card-carro">';
-                    echo '<h3>ID: </h3> <p>'.$row['id'].'</p>';
-                    echo '<h3>Marca: </h3> <p>'.ucwords($row['car_brand']).'</p>';
-                    echo '<h3>Modelo: </h3> <p>'.ucwords($row['car_model']).'</p>';
-                    echo '<h3>Cliente: </h3> <p>'.ucwords($row['client_name']).'</p>';
-                    echo '<h3>Valor: </h3> <p>R$ '.$row['value'].'</p>';
-                    echo '<div class="icons">';
-                    echo '<a href="pagamento_locacao.php?x='.$x.'"><i class="glyphicon glyphicon-ok"></i> Confirmar</a>';
-                    echo '</div></div>';
-                }
+        echo $sql;
+        var_dump($res_update);
 
-            ?>
-        </div>
+    ?>
     </main>
 </body>
 
