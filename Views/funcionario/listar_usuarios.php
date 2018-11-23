@@ -27,12 +27,12 @@
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                    <a href="#">
+                    <a href="dashboard.php">
                         <i class="fa fa-gift fa-lg"></i> Carros Alugados
                     </a>
                 </li>
                 <li>
-                    <a href="listar_usuarios.php">
+                    <a href="#">
                         <i class="fa fa-user fa-lg"></i> Usuários
                     </a>
                 </li>
@@ -46,36 +46,50 @@
     </div>
     <main>
         <div class="rent-header">
-            <h2>Carros <span style="color: #d19b3d;">Alugados</span></h2>
+            <h2>Todos os <span style="color: #d19b3d;">Usuários</span></h2>
             <form action="#" method="POST">
-                <span>Filtrar por Código</span>
+                <span>Filtrar por CNH</span>
                 <input type="text" name="rent_id" class="code-input" id="id_locacao">
                 <input type="submit" class="btn btn-custom" value="Filtrar">
             </form>
         </div>
         <div id="card-wrapper">
-
             <?php
                 if(isset($_POST['rent_id'])){
-                    $sql = "SELECT * FROM tb_locacao WHERE id = ".$_POST['rent_id'];
+                    $sql = "SELECT * FROM tb_cliente WHERE cnh = ".$_POST['rent_id'];
+                    
+                    if ($_POST['rent_id'] == '') { $sql = "SELECT * FROM tb_cliente"; }
+
                 } else {
-                    $sql = "SELECT * FROM tb_locacao";    
+                    $sql = "SELECT * FROM tb_cliente";    
+                }
+
+                $res_users = mysqli_query($CON, $sql);
+
+                function gamb($n){
+                    if($n == 1){
+                        return 'Sim';
+                    } elseif ($n == 0) {
+                        return 'Não';
+                    }
                 }
                 
-                $res_rented_cars = mysqli_query($CON, $sql);
-
-                while ($row = $res_rented_cars->fetch_assoc()) {
-                    echo '<div class="card-carro">';
-                    echo '<h3>ID: </h3> <p>'.$row['id'].'</p>';
-                    echo '<h3>Marca: </h3> <p>'.ucwords($row['car_brand']).'</p>';
-                    echo '<h3>Modelo: </h3> <p>'.ucwords($row['car_model']).'</p>';
-                    echo '<h3>Cliente: </h3> <p>'.ucwords($row['client_name']).'</p>';
-                    echo '<h3>Valor: </h3> <p>R$ '.$row['value'].'</p>';
-                    echo '<div class="icons">';
-                    echo '<a href=""><i class="glyphicon glyphicon-ok"></i> Confirmar</a>';
-                    echo '</div></div>';
+                // se encontrou registro
+                if($res_users){
+                    while ($row = $res_users->fetch_assoc()) {
+                        echo '<div class="card-carro">';
+                        echo '<h3>ID: </h3> <p>'.$row['id'].'</p>';
+                        echo '<h3>Nome: </h3> <p>'.ucwords($row['name']).'</p>';
+                        echo '<h3>Sobrenome: </h3> <p>'.ucwords($row['lastname']).'</p>';
+                        echo '<h3>CNH: </h3> <p>'.$row['cnh'].'</p>';
+                        echo '<h3>Email: </h3> <p>'.$row['email'].'</p>';
+                        echo '<h3>Carro Alugado: </h3> <p>'.gamb($row['rented_car']).'</p>';
+                        echo '<div class="icons">';
+                        echo '<a href=""><i class="glyphicon glyphicon-ok"></i> Confirmar</a>';
+                        echo '</div></div>';
+                    }
                 }
-
+                
             ?>
         </div>
     </main>

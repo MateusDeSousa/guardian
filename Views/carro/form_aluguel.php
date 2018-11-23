@@ -1,4 +1,4 @@
-]<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -24,20 +24,20 @@
 	  
 		  <!-- Collect the nav links, forms, and other content for toggling -->
 			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form navbar-left" action="#" method="GET">
+				<!--<form class="navbar-form navbar-left" action="#" method="GET">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Filtrar por Modelo">
 						</div>
 					<input type="submit" class="btn btn-default" value="Pesquisar">
-				</form>
+				</form>-->
 			  <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" style="color:#f1f1f1 !important;" aria-haspopup="true" aria-expanded="false">CRUD CLIENTE <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-				  <li><a href="#"><i class="glyphicon glyphicon-pencil"></i> Alterar</a></li>
-				  <li><a href="#"><i class="glyphicon glyphicon-trash"></i> Excluir</a></li>
+				  <li><a href="../../Controllers/cliente/solicitardados.php"><i class="glyphicon glyphicon-pencil"></i> Alterar</a></li>
+				  <li><a href="../../Controllers/cliente/excluircliente.php"><i class="glyphicon glyphicon-trash"></i> Excluir</a></li>
 				  <!--<li><a href="#">Something else here</a></li>-->
 				  <li role="separator" class="divider"></li>
-				  <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+				  <li><a href="../../Controllers/cliente/logout.php"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
 				</ul>
 			  </li>
 			</ul>
@@ -56,11 +56,11 @@
 				<label for="data-entrega">Data de Entrega:</label>
 				<input type="date" name="return_date">
 			</div>
-			<div class="form-group">
+			<!--<div class="form-group">
 				<input type="checkbox" name="termos" id="termos">
 				<p style="display: inline">Li e Concordo com os <a href="#">Termos de Serviço.</a></p>
-			</div>
-			<a href="forma_pagamentos.html"><input type="submit" class="btn btn-success btn-form-data" value="Prosseguir"></a>
+			</div>-->
+			<a href="forma_pagamentos.html"><input style="margin-top: 12rem;" type="submit" class="btn btn-success btn-form-data" value="Prosseguir"></a>
 		</form>
 	</main>
 	<script src="../../Assets/js/jquery-3.3.1.min.js"></script>
