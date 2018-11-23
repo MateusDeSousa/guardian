@@ -40,7 +40,7 @@
 					<input type="submit" class="btn btn-default" value="Pesquisar">
 				</form>
 			  <li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" style="color:#f1f1f1 !important;" aria-haspopup="true" aria-expanded="false">CRUD CLIENTE <span class="caret"></span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" style="color:#f1f1f1 !important;" aria-haspopup="true" aria-expanded="false">Minha Conta <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 				  <li><a href="../../Controllers/cliente/solicitardados.php"><i class="glyphicon glyphicon-pencil"></i> Alterar</a></li>
 				  <li><a href="../../Controllers/cliente/excluircliente.php"><i class="glyphicon glyphicon-trash"></i> Excluir Conta</a></li>
@@ -55,7 +55,7 @@
 	  </nav>
 
 	<main class="container">
-		<h2 class="text-center">Efetuar Locação</h2>
+		<h2 class="text-center">Efetuar <span style="color: #d19b3d;">Locação</span></h2>
         
         <?php
             $id = $_GET['x'];
