@@ -58,7 +58,6 @@
 		<h2 class="text-center">Efetuar Locação</h2>
         
         <?php
-            include('../../Config/config.php');
             $id = $_GET['x'];
             $sql_carro = "SELECT * FROM tb_veiculo WHERE id = ".$id;
 
@@ -68,13 +67,13 @@
                 /**
                  * DADOS QUE VEM DA TABELA DE CARRO
                  */
-                $id_carro = $row['car_id'];
-                $valor = 'VER AQUI COMO FAZER PRA CHECAR ISSO';
+                $id_carro = $row['id'];
+                $valor_diaria_carro = $row['value'];
                 $marca_carro = $row['car_brand'];
                 $modelo_carro = $row['car_model'];
                 /**
                  * VALOR DEFAULT DE LOCAÇÃO
-                
+                */
                 $status = 'pendente';
                 /**
                  * DADOS RECEBIDOS POR SESSION
@@ -85,9 +84,14 @@
                 $dia_devolucao = 'PASSAR COM A SESSION TBM';
             }
 
+            /**
+             * VER COMO VAI TRATAR ISSO AQUI
+             */
+            $valor_total_locacao = $valor_diaria_carro * 1;
+
             $sql = "INSERT INTO tb_locacao (`car_id`, `client_id`, `value`, `status`, `rent_date`, `return_date`, `car_brand`, `car_model`, `client_name`)";
             $sql .= " VALUES ";
-            $sql .= "{$id_carro},{$id_cliente},{$valor},'{$status}','{$dia_aluguel}','{$dia_devolucao}','{$marca_carro}','{$modelo_carro}','{$nome_cliente}'";
+            $sql .= "{$id_carro},{$id_cliente},{$valor_total_locacao},'{$status}','{$dia_aluguel}','{$dia_devolucao}','{$marca_carro}','{$modelo_carro}','{$nome_cliente}'";
 
         ?>
 
